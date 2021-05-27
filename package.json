@@ -9,7 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "sass": "^1.34.0",
+    "sass-loader": "10",
+    "scss": "^0.2.4",
+    "videojs-flash": "^2.2.1",
+    "vue": "^2.6.11",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
