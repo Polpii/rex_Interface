@@ -17,7 +17,7 @@
     </video>
     </div>
     <div id="sidebar">
-      <button class="button" color="deeppink" v-on:click="start">FOLLOW ME</button>
+      <button class="button" color="deeppink" v-on:click="navigation('stop')">FOLLOW ME</button>
       <button class="button" v-on:click="stop">GO HOME</button>
       <img id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
     </div>
@@ -26,19 +26,29 @@
 
 <script>
 
+import Vue from 'vue'
+import axios from 'axios'
+
+Vue.prototype.$http = axios
+
 export default {
   name: 'App',
   components: {
   },
   methods: {
-    return_button: function () {
-      this.$router.push('/navigation')
-      this.$route.params.pathMatch
-    },
     start: function () {
       this.$router.push('/start')
       this.$route.params.pathMatch
     },
+    navigation: function (coordinates) {
+        this.$axios.get('http://127.0.0.1:5000/' + coordinates, {headers: {'Access-Control-Allow-Origin': '*'}})
+        .then(resp => {
+            console.log(resp.data);
+        }).catch(function (error) {
+          console.log(error)
+        })
+        this.show = false
+      },
     stop: function () {
       this.$router.push('/stop')
       this.$route.params.pathMatch
