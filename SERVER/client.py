@@ -12,4 +12,4 @@ datagramSocket.bind(listeningAddress)
 
 while(True):
     localization, sourceAddress = datagramSocket.recvfrom(128)
-    print("Go to %s "%(localization.decode()))
+    print((localization.decode()))
