@@ -2,8 +2,8 @@ from flask import Flask, redirect, url_for, request, jsonify
 import socket
 from flask_cors import CORS
 
-IP   = "172.21.72.168";
-# IP   = "192.168.1.71";
+# IP   = "172.21.72.168";
+IP   = "192.168.1.71";
 PORT = 5000
 
 app = Flask(__name__)
