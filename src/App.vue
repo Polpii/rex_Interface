@@ -23,14 +23,14 @@
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
 
       <div v-show="manualMode" class="controls">
-          <div id="T" v-on:click="navigation('thomas')" class="control"></div>
-          <div id="L" v-on:click="navigation('est')" class="control"></div>
-          <div id="R" v-on:click="navigation('en')" class="control"></div>
-          <div id="D" v-on:click="navigation('train')" class="control"></div>
-          <div id="TR" v-on:click="navigation('de')" class="control"></div>
-          <div id="TL" v-on:click="navigation('vomir')" class="control"></div>
-          <div id="DL" v-on:click="navigation('sa')" class="control"></div>
-          <div id="DR" v-on:click="navigation('race')" class="control"></div>
+          <div id="Forward" v-on:click="navigation('1')" class="control"></div>
+          <div id="Left" v-on:click="navigation('3')" class="control"></div>
+          <div id="Right" v-on:click="navigation('4')" class="control"></div>
+          <div id="Backward" v-on:click="navigation('2')" class="control"></div>
+          <div id="Upper_Diagonal_Right" v-on:click="navigation('8')" class="control"></div>
+          <div id="Upper_Diagonal_Left" v-on:click="navigation('7')" class="control"></div>
+          <div id="Down_Diagonal_Left" v-on:click="navigation('9')" class="control"></div>
+          <div id="Down_Diagonal_Right" v-on:click="navigation('10')" class="control"></div>
         </div>
       <button class="button" v-show="manualMode" v-on:click="changeMode">BACK</button>
 
@@ -123,44 +123,44 @@ body, html {
   width: 100%;
   height: 100%;
 }
-#L{
+#Left{
   top: 40%;
   left: 10%;
   transform: rotate(180deg);
 }
-#R {
+#Right {
   top: 40%;
   right: 10%;
 }
-#T {
+#Forward {
   display: block;
   top: 10%;
   left: 40%;
   transform: rotate(-90deg);
 }
-#TL {
+#Upper_Diagonal_Left {
   display: block;
   top: 20%;
   left: 20%;
   transform: rotate(-135deg);
 }
-#TR {
+#Upper_Diagonal_Right {
   display: block;
   top: 20%;
   right: 20%;
   transform: rotate(-45deg);
 }
-#D {
+#Backward {
   transform: rotate(90deg);
   left: 40%;
   bottom: 10%;
 }
-#DL {
+#Down_Diagonal_Left {
   transform: rotate(135deg);
   left: 20%;
   bottom: 20%;
 }
-#DR {
+#Down_Diagonal_Right {
   transform: rotate(45deg);
   right: 20%;
   bottom: 20%;
