@@ -17,12 +17,24 @@
     </video>
     </div>
     <div id="sidebar">
-      <button class="button" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
-      <button class="button" v-on:click="navigation('waiting')">WAIT</button>
-      <button class="button" v-on:click="navigation('home')">GO HOME</button>
-      <button class="button" v-on:click="navigation('manual')">MANUAL MODE</button>
+      <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('waiting')">WAIT</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
 
-      <img id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
+      <div v-show="manualMode" class="controls">
+          <div id="T" v-on:click="navigation('thomas')" class="control"></div>
+          <div id="L" v-on:click="navigation('est')" class="control"></div>
+          <div id="R" v-on:click="navigation('en')" class="control"></div>
+          <div id="D" v-on:click="navigation('train')" class="control"></div>
+          <div id="TR" v-on:click="navigation('de')" class="control"></div>
+          <div id="TL" v-on:click="navigation('vomir')" class="control"></div>
+          <div id="DL" v-on:click="navigation('sa')" class="control"></div>
+          <div id="DR" v-on:click="navigation('race')" class="control"></div>
+        </div>
+      <button class="button" v-show="manualMode" v-on:click="changeMode">BACK</button>
+
+      <img v-show="manualMode" id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
     </div>
   </div>
 </template>
@@ -38,23 +50,26 @@ export default {
   name: 'App',
   components: {
   },
+  data () {
+    return {
+      manualMode: false,
+    };
+  },
   methods: {
-    start: function () {
-      this.$router.push('/start')
-      this.$route.params.pathMatch
+    changeMode: function () {
+      this.manualMode = false;
     },
     navigation: function (coordinates) {
-        this.$axios.get('http://127.0.0.1:5000/' + coordinates, {headers: {'Access-Control-Allow-Origin': '*'}})
-        .then(resp => {
-            console.log(resp.data);
-        }).catch(function (error) {
-          console.log(error)
-        })
-        this.show = false
-      },
-    stop: function () {
-      this.$router.push('/stop')
-      this.$route.params.pathMatch
+      if (coordinates == 'manual') {
+        this.manualMode = true;
+      }
+      this.$axios.get('http://127.0.0.1:5000/' + coordinates, {headers: {'Access-Control-Allow-Origin': '*'}})
+      .then(resp => {
+          console.log(resp.data);
+      }).catch(function (error) {
+        console.log(error)
+      })
+      this.show = false
     },
   }
 }
@@ -95,7 +110,7 @@ body, html {
 }
 #logo_D {
   margin: 5rem 0rem 0rem 0rem;
-  width: 100%;
+  width: 80%;
 }
 #logo_Devo {
   position: absolute;
@@ -107,5 +122,62 @@ body, html {
 #stream {
   width: 100%;
   height: 100%;
+}
+#L{
+  top: 40%;
+  left: 10%;
+  transform: rotate(180deg);
+}
+#R {
+  top: 40%;
+  right: 10%;
+}
+#T {
+  display: block;
+  top: 10%;
+  left: 40%;
+  transform: rotate(-90deg);
+}
+#TL {
+  display: block;
+  top: 20%;
+  left: 20%;
+  transform: rotate(-135deg);
+}
+#TR {
+  display: block;
+  top: 20%;
+  right: 20%;
+  transform: rotate(-45deg);
+}
+#D {
+  transform: rotate(90deg);
+  left: 40%;
+  bottom: 10%;
+}
+#DL {
+  transform: rotate(135deg);
+  left: 20%;
+  bottom: 20%;
+}
+#DR {
+  transform: rotate(45deg);
+  right: 20%;
+  bottom: 20%;
+}
+.controls {
+  display: block;
+  top: 50px;
+  width: 100%;
+  height: 325px;
+  position: relative;
+}
+.control {
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-image: url('./assets/arrow.svg');
+  cursor: pointer;
 }
 </style>
