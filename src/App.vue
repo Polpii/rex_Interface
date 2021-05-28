@@ -31,6 +31,10 @@
           <div id="TL" v-on:click="navigation('vomir')" class="control"></div>
           <div id="DL" v-on:click="navigation('sa')" class="control"></div>
           <div id="DR" v-on:click="navigation('race')" class="control"></div>
+          <svg id="C" v-on:click="navigation('!')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="orange" />
+          </svg>
+          <!-- <div id="C" v-on:click="navigation('!')"></div> -->
         </div>
       <button class="button" v-show="manualMode" v-on:click="changeMode">BACK</button>
 
@@ -165,11 +169,20 @@ body, html {
   right: 20%;
   bottom: 20%;
 }
+#C{
+  position: absolute;
+  z-index: 10;
+  width: 40%;
+  height: 40%;
+  right: 32%;
+  bottom: 30%;
+  cursor: pointer; 
+}
 .controls {
   display: block;
   top: 50px;
   width: 100%;
-  height: 325px;
+  height: 320px;
   position: relative;
 }
 .control {
@@ -178,6 +191,6 @@ body, html {
   width: 50px;
   height: 50px;
   background-image: url('./assets/arrow.svg');
-  cursor: pointer;
+  cursor: pointer;  
 }
 </style>
