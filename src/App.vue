@@ -17,8 +17,11 @@
     </video>
     </div>
     <div id="sidebar">
-      <button class="button" color="deeppink" v-on:click="navigation('start')">FOLLOW ME</button>
-      <button class="button" v-on:click="navigation('stop')">GO HOME</button>
+      <button class="button" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
+      <button class="button" v-on:click="navigation('waiting')">WAIT</button>
+      <button class="button" v-on:click="navigation('home')">GO HOME</button>
+      <button class="button" v-on:click="navigation('manual')">MANUAL MODE</button>
+
       <img id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
     </div>
   </div>
