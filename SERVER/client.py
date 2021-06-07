@@ -2,7 +2,8 @@ import socket
 
 # Define the IP address and the Port Number
 # IP    = "172.21.72.133"
-IP    = "192.168.1.71"
+# IP    = "192.168.1.71"
+IP = "172.21.71.151"
 PORT  = 5000
 
 listeningAddress = (IP, PORT)

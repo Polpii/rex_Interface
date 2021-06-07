@@ -2,19 +2,8 @@
   <div id="app">
     <div id="video">
       <img id="logo_Devo" alt="DEVO logo" src="./assets/Devo_4.png">
-      <video
-        id="stream"
-        class="video-js vjs-default-skin"
-        controls
-        autoplay
-        preload="auto"
-        width="100%"
-        height="100%"
-        data-setup="{}"
-      >
-        <source src="rtsp://172.21.72.151:8554/">
-      <!-- <source src="rtsp://admin:admin@10.136.26.200:554/live/0" /> -->
-    </video>
+      <img id="stream" :src=url>
+      <!-- <vue-webrtc id="stream" source='http://172.21.72.151:4444/'/>       -->
     </div>
     <div id="sidebar">
       <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
@@ -44,8 +33,10 @@
 
 <script>
 
-import Vue from 'vue'
 import axios from 'axios'
+import Vue from 'vue'
+import {WebRTC} from 'vue-webrtc'
+Vue.component(WebRTC.name, WebRTC)
 
 Vue.prototype.$http = axios
 
@@ -56,6 +47,7 @@ export default {
   data () {
     return {
       manualMode: false,
+      url: 'http://172.21.72.151:4444/video_feed'
     };
   },
   methods: {
@@ -73,7 +65,7 @@ export default {
         console.log(error)
       })
       this.show = false
-    },
+    }
   }
 }
 </script>
