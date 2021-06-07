@@ -3,15 +3,15 @@
     <div id="video">
       <img id="logo_Devo" alt="DEVO logo" src="./assets/Devo_4.png">
       <img id="stream" :src=url>
-      <!-- <vue-webrtc id="stream" source='http://172.21.72.151:4444/'/>       -->
     </div>
     <div id="sidebar">
       <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('waiting')">WAIT</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
+      <button class="send" v-show="!manualMode" v-on:click="navigation('1_' + id + '_')">FIX ON :</button>
       <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
-      <button class="send" v-show="!manualMode" v-on:click="navigation(id)">SEND</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
 
       <div v-show="manualMode" class="controls">
           <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -56,9 +56,6 @@ export default {
   methods: {
     changeMode: function () {
       this.manualMode = false;
-    },
-    polpii: function (id) {
-      console.log(id)
     },
     navigation: function (coordinates) {
       if (coordinates == 'manual') {
@@ -107,21 +104,21 @@ body, html {
     font-size: 2rem;
     margin: 7rem 0rem 0rem 0rem;
     width: 80%;
-    height: 10%;
+    height: 7%;
     text-align: center;
   }
   .input {
     font-size: 2rem;
     margin: 7rem 0rem 0rem 0rem;
     width: 40%;
-    height: 9.5%;
+    height: 6.5%;
     text-align: center;
   }
   .send {
     font-size: 2rem;
     margin: 7rem 0rem 0rem 0rem;
     width: 40%;
-    height: 10%;
+    height: 7%;
     text-align: center;
   }
 }
