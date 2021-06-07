@@ -10,6 +10,8 @@
       <button class="button" v-show="!manualMode" v-on:click="navigation('waiting')">WAIT</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
+      <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
+      <button class="send" v-show="!manualMode" v-on:click="navigation(id)">SEND</button>
 
       <div v-show="manualMode" class="controls">
           <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -47,12 +49,16 @@ export default {
   data () {
     return {
       manualMode: false,
-      url: 'http://172.21.72.151:4444/video_feed'
+      url: 'http://172.21.72.151:4444/video_feed',
+      id: ''
     };
   },
   methods: {
     changeMode: function () {
       this.manualMode = false;
+    },
+    polpii: function (id) {
+      console.log(id)
     },
     navigation: function (coordinates) {
       if (coordinates == 'manual') {
@@ -98,9 +104,25 @@ body, html {
   display: block;
   border: solid black 3px;
   .button {
+    font-size: 2rem;
     margin: 7rem 0rem 0rem 0rem;
     width: 80%;
     height: 10%;
+    text-align: center;
+  }
+  .input {
+    font-size: 2rem;
+    margin: 7rem 0rem 0rem 0rem;
+    width: 40%;
+    height: 9.5%;
+    text-align: center;
+  }
+  .send {
+    font-size: 2rem;
+    margin: 7rem 0rem 0rem 0rem;
+    width: 40%;
+    height: 10%;
+    text-align: center;
   }
 }
 #logo_D {
