@@ -1,7 +1,9 @@
+import AspectRatio from "v-aspect-ratio";
+import Axios from 'axios'
 import Vue from 'vue'
 import App from './App.vue'
-import Axios from 'axios'
 
+Vue.use(AspectRatio);
 Vue.config.productionTip = false
 Vue.prototype.$axios = Axios
 

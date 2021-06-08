@@ -19,6 +19,7 @@
     "sass-loader": "10",
     "scss": "^0.2.4",
     "sdp-translator": "^0.1.24",
+    "v-aspect-ratio": "^2.0.1",
     "videojs-flash": "^2.2.1",
     "vue": "^2.6.11",
     "vue-video-player": "^5.0.2",
