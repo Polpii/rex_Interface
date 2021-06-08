@@ -9,6 +9,7 @@
       <button class="button" v-show="!manualMode" v-on:click="navigation('waiting')">WAIT</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('reset')">RESET</button>
       <button class="send" v-show="!manualMode" v-on:click="navigation('1_' + id + '_')">FIX ON :</button>
       <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
       <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
@@ -17,6 +18,8 @@
           <div id="Forward" v-on:click="navigation('1')" class="control"></div>
           <div id="Left" v-on:click="navigation('3')" class="control"></div>
           <div id="Right" v-on:click="navigation('4')" class="control"></div>
+          <div id="L" v-on:click="navigation('5')" class="control"></div>
+          <div id="R" v-on:click="navigation('6')" class="control"></div>
           <div id="Backward" v-on:click="navigation('2')" class="control"></div>
           <div id="Upper_Diagonal_Right" v-on:click="navigation('8')" class="control"></div>
           <div id="Upper_Diagonal_Left" v-on:click="navigation('7')" class="control"></div>
@@ -102,21 +105,21 @@ body, html {
   border: solid black 3px;
   .button {
     font-size: 2rem;
-    margin: 7rem 0rem 0rem 0rem;
+    margin: 5rem 0rem 0rem 0rem;
     width: 80%;
     height: 7%;
     text-align: center;
   }
   .input {
     font-size: 2rem;
-    margin: 7rem 0rem 0rem 0rem;
+    margin: 5rem 0rem 0rem 0rem;
     width: 40%;
     height: 6.5%;
     text-align: center;
   }
   .send {
     font-size: 2rem;
-    margin: 7rem 0rem 0rem 0rem;
+    margin: 5rem 0rem 0rem 0rem;
     width: 40%;
     height: 7%;
     text-align: center;
@@ -142,9 +145,18 @@ body, html {
   left: 10%;
   transform: rotate(180deg);
 }
+#L {
+  top: 40%;
+  left: 0%;
+  transform: rotate(180deg);
+}
 #Right {
   top: 40%;
   right: 12%;
+}
+#R {
+  top: 40%;
+  right: 0%;
 }
 #Forward {
   display: block;
