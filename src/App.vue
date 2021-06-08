@@ -131,7 +131,7 @@ body, html {
 #logo_Devo {
   position: absolute;
   z-index: 1;
-  left: 2%;
+  left: 2.01%;
   top: 0px;
   width: 7%;
 }
