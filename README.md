@@ -15,12 +15,4 @@ yarn serve
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# rex_Interface
-# rex_Interface
+This **interface** allows you to control **REX**, the following robot of the DVIC. YOu can find more info on its github here <https://github.com/Shkunn/TRACKIN_DVIC>
