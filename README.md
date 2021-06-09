@@ -35,3 +35,22 @@ There is three main mode.
 * If you want REX to follow you, you'll have to write the id of the person you want to follow next to **FIX ON** and then click on **FOLLOW ME**. If you want to follow another person, simply **UNFIX** and **FIX ON** someone else.
 * After following someone, REX can return home autonomously by clicking on the **GO HOME** button
 * If you want to control manually the robot you have to select **MANUAL MODE** and then arrows will appear to control REX
+
+### HOW TO LAUNCH THE DEMO
+
+You'll have for now three different code in three bash:
+
+**First the website:**
+```
+yarn serve
+```
+
+**Then a server:**
+```
+python3 SERVER/server.py
+```
+
+**And the mast server:**
+```
+python3 SERVER/python3 app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
+```
