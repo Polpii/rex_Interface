@@ -50,7 +50,7 @@ yarn serve
 python3 SERVER/server.py
 ```
 
-**And the mast server:**
+**And the second server:**
 ```
 python3 SERVER/python3 app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
 ```
