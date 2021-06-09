@@ -26,3 +26,10 @@ You can use the interface to interact with REX with the different buttons:
 * **MANUAL MODE**
 * **FIX ON**
 * **UNFIX**
+
+### HOW TO USE IT ?
+
+There is three main mode. 
+1. If you want REX to follow you, you'll have to write the id of the person you want to follow next to **FIX ON** and then click on **FOLLOW ME**. If you want to follow another person, simply **UNFIX** and **FIX ON** someone else.
+1. After following someone, REX can return home autonomously by clicking on the **GO HOME** button
+1.  If you want to control manually the robot you have to select **MANUAL MODE** and then arrows will appear to control REX
