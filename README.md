@@ -52,6 +52,7 @@ To run the tree different servers you just have:
 ```
 cd ws
 npm install
+cd ..
 chmod +x launch_server.sh
 ./launch_server.sh
 ```
