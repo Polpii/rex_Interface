@@ -50,6 +50,8 @@ yarn serve
 **RUN THE SERVERS**
 To run the tree different servers you just have:
 ```
+cd ws
+npm install
 chmod +x launch_server.sh
 ./launch_server.sh
 ```
