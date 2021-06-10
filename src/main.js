@@ -1,7 +1,7 @@
+import App from './App.vue'
 import AspectRatio from "v-aspect-ratio";
 import Axios from 'axios'
 import Vue from 'vue'
-import App from './App.vue'
 
 Vue.use(AspectRatio);
 Vue.config.productionTip = false

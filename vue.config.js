@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
     inline: true,
-    proxy: 'http://172.21.72.151:4444/'
+    proxy: 'http://172.21.72.168:5900/'
   }
 }

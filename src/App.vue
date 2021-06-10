@@ -2,7 +2,8 @@
   <div id="app">
     <div id="video">
       <img id="logo_Devo" alt="DEVO logo" src="./assets/Devo_4.png">
-      <img id="stream" :src=url>
+      <!-- <img id="stream" :src=url> -->
+      <div ref="stream"></div>
     </div>
     <div id="sidebar">
       <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
@@ -13,6 +14,7 @@
       <button class="send" v-show="!manualMode" v-on:click="navigation('1_' + id + '_')">FIX ON :</button>
       <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
       <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
+      <button class="button" v-show="!manualMode" v-on:click="connect()">MAP BUILDER</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">
         <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -38,6 +40,7 @@
 <script>
 import axios from 'axios'
 import Vue from 'vue'
+import RFB from '@novnc/novnc/core/rfb';
 import {WebRTC} from 'vue-webrtc'
 Vue.component(WebRTC.name, WebRTC)
 
@@ -51,12 +54,20 @@ export default {
     return {
       manualMode: false,
       url: 'http://172.21.72.133:4444/video_feed',
-      id: ''
+      id: '',
+      ws: 'ws://localhost:8081/',
+      passwd: 'Rane2019',
     };
   },
   methods: {
     changeMode: function () {
       this.manualMode = false;
+    },
+    connect() {
+      this.rfb.sendCredentials({ password: this.passwd });
+    },
+    disconnect() {
+      this.rfb.disconnect();
     },
     navigation: function (coordinates) {
       if (coordinates == 'manual') {
@@ -70,150 +81,15 @@ export default {
       })
       this.show = false
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.rfb = new RFB(this.$refs.stream, this.ws);
+    });
   }
 }
 </script>
 
 <style lang="scss">
-body, html {
-  margin: 0px;
-  padding: 0px;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #ffffff;
-  display: flex;
-}
-#video {
-  height: 99.3vh;
-  width: 80%;
-  margin: 0px;
-  background-color: #202e3b;
-  border: solid black 3px;
-}
-#sidebar {
-  height: 99.3vh;
-  width: 20%;
-  margin: 0px;
-  background-color: #202342; // #f07d4bbb;  
-  display: block;
-  border: solid black 3px;
-  font-size: 2vh;
-  .button {
-    font-size: 2vh;
-    margin: 6vh 0vh 0vh 0vh;
-    width: 80%;
-    height: 7%;
-    text-align: center;
-  }
-  .input {
-    font-size: 2vh;
-    margin: 6vh 0vh 0vh 0vh;
-    width: 40%;
-    height: 6.55%;
-    text-align: center;
-  }
-  .send {
-    font-size: 2vh;
-    margin: 6vh 0vh 0vh 0vh;
-    width: 40%;
-    height: 7%;
-    text-align: center;
-  }
-}
-#logo_D {
-  margin: 5vh 0vh 0vh 0vh;
-  width: 80%;
-}
-#logo_Devo {
-  position: absolute;
-  z-index: 1;
-  left: 2.01%;
-  top: 0px;
-  width: 7%;
-}
-#stream {
-  width: 100%;
-  height: 100%;
-}
-#Left{
-  top: 42.5%;
-  left: 17%;
-  transform: rotate(180deg);
-}
-#L {
-  top: 42.5%;
-  left: 0%;
-  transform: rotate(180deg);
-}
-#Right {
-  top: 42.5%;
-  right: 17%;
-}
-#R {
-  top: 42.5%;
-  right: 0%;
-}
-#Forward {
-  display: block;
-  top: 17%;
-  left: 42.5%;
-  transform: rotate(-90deg);
-}
-#Upper_Diagonal_Left {
-  display: block;
-  top: 22%;
-  left: 22%;
-  transform: rotate(-135deg);
-}
-#Upper_Diagonal_Right {
-  display: block;
-  top: 22%;
-  right: 22%;
-  transform: rotate(-45deg);
-}
-#Backward {
-  transform: rotate(90deg);
-  left: 42.5%;
-  bottom: 17%;
-}
-#Down_Diagonal_Left {
-  transform: rotate(135deg);
-  left: 22%;
-  bottom: 22%;
-}
-#Down_Diagonal_Right {
-  transform: rotate(45deg);
-  right: 22%;
-  bottom: 22%;
-}
-#Center{
-  position: absolute;
-  z-index: 10;
-  width: 40%;
-  height: 40%;
-  right: 30%;
-  bottom: 30%;
-  cursor: pointer; 
-}
-.controls {
-  position: relative;
-  top: 50px;
-  width: 100%;
-}
-.control {
-  position: absolute;
-  display: block;
-  width: 15%;
-  height: 15%;
-  background-image: url('./assets/arrow.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  opacity: 1; 
-}
+  @import './assets/styles.scss';
 </style>
