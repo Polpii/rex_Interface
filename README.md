@@ -47,17 +47,10 @@ You'll have to run four different codes in four bash:
 yarn serve
 ```
 
-**Then a server:**
-```
-python3 SERVER/server.py
-```
+**RUN THE SERVERS**
+To run the tree different servers you just have to first: ```chmod +x launch_server.sh``` and then run:```./launch_server.sh```
 
-**The second server:**
-```
-python3 SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
-```
-**And the third server:**
-```
-./websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
-
-``` 
+This will launch this three servers:
+* SERVER/server.py
+* SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
+* ./../websockify-js/websockify/websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
