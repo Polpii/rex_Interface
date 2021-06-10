@@ -28,17 +28,19 @@ You can use the interface to interact with REX with the different buttons:
 * **MANUAL MODE**
 * **FIX ON**
 * **UNFIX**
+* **MAP BUILDER**
 
 ### HOW TO USE IT ?
 
-There is three main mode. 
+There is four main modes. 
 * If you want REX to follow you, you'll have to write the id of the person you want to follow next to **FIX ON** and then click on **FOLLOW ME**. If you want to follow another person, simply **UNFIX** and **FIX ON** someone else.
 * After following someone, REX can return home autonomously by clicking on the **GO HOME** button
 * If you want to control manually the robot you have to select **MANUAL MODE** and then arrows will appear to control REX
+* IF you want REX to build a map in real time click on **MAP BUILDER** then click on the sh file on the desktop and you'll see a 3D map creation. WHile creating it, you can control him with the arrows of the **MANUAL MODE**
 
 ### HOW TO LAUNCH THE DEMO
 
-You'll have for now three different code in three bash:
+You'll have to run three different codes in three bash:
 
 **First the website:**
 ```
