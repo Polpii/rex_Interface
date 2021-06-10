@@ -14,7 +14,8 @@
       <button class="send" v-show="!manualMode" v-on:click="navigation('1_' + id + '_')">FIX ON :</button>
       <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
       <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
-      <button class="button" v-show="!manualMode" v-on:click="connect()">MAP BUILDER</button>
+      <button class="button" v-show="!manualMode && !mapbuilder" v-on:click="connect()">MAP BUILDER</button>
+      <button class="button" v-show="!manualMode && mapbuilder" v-on:click="disconnect()">DISCONNECT</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">
         <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -53,6 +54,7 @@ export default {
   data () {
     return {
       manualMode: false,
+      mapbuilder: false,
       url: 'http://172.21.72.133:4444/video_feed',
       id: '',
       ws: 'ws://localhost:8081/',
@@ -65,9 +67,11 @@ export default {
     },
     connect() {
       this.rfb.sendCredentials({ password: this.passwd });
+      this.mapbuilder = true;
     },
     disconnect() {
       this.rfb.disconnect();
+      this.mapbuilder = false;
     },
     navigation: function (coordinates) {
       if (coordinates == 'manual') {
