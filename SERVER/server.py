@@ -3,7 +3,7 @@ import socket
 from flask_cors import CORS
 
 # IP   = "172.21.72.149";
-IP   = "172.21.72.151"
+IP   = "172.21.72.168"
 PORT = 5000
 
 app = Flask(__name__)
