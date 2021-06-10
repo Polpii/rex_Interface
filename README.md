@@ -60,4 +60,4 @@ chmod +x launch_server.sh
 This will launch this three servers:
 * SERVER/server.py
 * SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
-* ./ws/websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
+* ./ws/websockify/websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
