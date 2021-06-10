@@ -58,6 +58,6 @@ python3 SERVER/python3 app_core.py --prototxt MobileNetSSD_deploy.prototxt --mon
 ```
 **And the third server:**
 ```
-./websockify.js localhost:8081 172.21.72.168:5900
+./websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
+
 ``` 
-[options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
