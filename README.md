@@ -54,7 +54,7 @@ python3 SERVER/server.py
 
 **The second server:**
 ```
-SERVER/python3 app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
+python3 SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
 ```
 **And the third server:**
 ```
