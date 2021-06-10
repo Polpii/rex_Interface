@@ -40,7 +40,7 @@ There is four main modes.
 
 ### HOW TO LAUNCH THE DEMO
 
-You'll have to run three different codes in three bash:
+You'll have to run four different codes in four bash:
 
 **First the website:**
 ```
@@ -52,11 +52,9 @@ yarn serve
 python3 SERVER/server.py
 ```
 
-**And the second server:**
+**The second server:**
 ```
 python3 SERVER/python3 app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
 ```
-
-```
-./websockify.js localhost:8081 172.21.72.168:5900
-```
+**And the third server:**
+```./websockify.js localhost:8081 172.21.72.168:5900``` [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
