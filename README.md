@@ -48,7 +48,11 @@ yarn serve
 ```
 
 **RUN THE SERVERS**
-To run the tree different servers you just have to first: ```chmod +x launch_server.sh``` and then run:```./launch_server.sh```
+To run the tree different servers you just have:
+```
+chmod +x launch_server.sh
+./launch_server.sh
+```
 
 This will launch this three servers:
 * SERVER/server.py
