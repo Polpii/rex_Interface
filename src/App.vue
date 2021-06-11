@@ -81,10 +81,14 @@ export default {
       this.mapbuilder = false;
     },
     navigation: function (coordinates) {
+      let port ='5000/';
       if (coordinates == 'manual') {
         this.manualMode = true;
       }
-      this.$axios.get('http://127.0.0.1:5000/' + coordinates, {headers: {'Access-Control-Allow-Origin': '*'}})
+      if(coordinates == 'run' || coordinates == 'stop') {
+        port = '5001/';
+      }
+      this.$axios.get('http://127.0.0.1:' + port + coordinates, {headers: {'Access-Control-Allow-Origin': '*'}})
       .then(resp => {
           console.log(resp.data);
       }).catch(function (error) {
