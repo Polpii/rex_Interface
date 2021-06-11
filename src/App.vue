@@ -16,6 +16,8 @@
       <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
       <button class="button" v-show="!manualMode && !mapbuilder" v-on:click="connect()">MAP BUILDER</button>
       <button class="button" v-show="!manualMode && mapbuilder" v-on:click="disconnect()">DISCONNECT</button>
+      <button class="button" v-show="!manualMode && mapbuilder && !running" v-on:click="swapRunning('run')">RUN</button>
+      <button class="button" v-show="!manualMode && mapbuilder && running" v-on:click="swapRunning('stop')">STOP</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">
         <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -55,6 +57,7 @@ export default {
     return {
       manualMode: false,
       mapbuilder: false,
+      running: false,
       url: 'http://172.21.72.133:4444/video_feed',
       id: '',
       ws: 'ws://localhost:8081/',
@@ -64,6 +67,10 @@ export default {
   methods: {
     changeMode: function () {
       this.manualMode = false;
+    },
+    swapRunning(msg) {
+      this.running = !this.running;
+      this.navigation(msg);
     },
     connect() {
       this.rfb.sendCredentials({ password: this.passwd });
