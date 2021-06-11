@@ -37,7 +37,7 @@ There is four main modes.
 * After following someone, REX can return home autonomously by clicking on the **GO HOME** button
 * If you want to control manually the robot you have to select **MANUAL MODE** and then arrows will appear to control REX
 * If you want REX to build a map in real time click on **MAP BUILDER** then click on the sh file on the desktop and you'll see a 3D map creation. While creating it, you can control him with the arrows of the **MANUAL MODE**
-* 
+
 ### HOW TO LAUNCH THE DEMO
 
 You'll have to run four different codes in four bash:
