@@ -65,7 +65,7 @@ On the right of the screen there is two application that will run two different 
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
 
-
+Then you'll be able to use all the fonctionnality of the Interface explained here : [REX GITHUB](https://github.com/Shkunn/TRACKIN_DVIC)
 
 This will launch this three servers:
 * SERVER/server.py
