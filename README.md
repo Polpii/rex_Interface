@@ -57,6 +57,11 @@ chmod +x launch_server.sh
 ./launch_server.sh
 ```
 
+This will launch this three servers:
+* SERVER/server.py
+* SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
+* ./ws/websockify/websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
+
 Once youre on th interface you can connect yourself to the Jetson Nano by clicking on the **Map Builder**. You'll see this page: 
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_map_builder.png?raw=true)
@@ -65,9 +70,11 @@ On the right of the screen there is two application that will run two different 
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
 
-Then you'll be able to use all the fonctionnality of the Interface explained here : [REX GITHUB](https://github.com/Shkunn/TRACKIN_DVIC)
+Then you'll be able to use all the fonctionnalities of the Interface explained here : [REX GITHUB](https://github.com/Shkunn/TRACKIN_DVIC)
 
-This will launch this three servers:
-* SERVER/server.py
-* SERVER/app_core.py --prototxt MobileNetSSD_deploy.prototxt --montageW 2 --montageH 2
-* ./ws/websockify/websockify.js localhost:8081 172.21.72.168:5900 [options] SOURCE_ADDR:PORT TARGET_ADDR:PORT
+If you want to use the **MAP BUILDER** mode you have click on the **MAP BUILDER** button to see the Jetson Nano desktop (if you don't reload and click again).
+Then click on the **atom** under the arrow, write the password and then click on the **RUN** button ! 
+
+You will see a 3D pointcloud representing your environement !
+
+YOu now know everything, ENJOY !
