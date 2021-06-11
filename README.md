@@ -77,4 +77,4 @@ Then click on the **atom** under the arrow, write the password and then click on
 
 You will see a 3D pointcloud representing your environement !
 
-YOu now know everything, ENJOY !
+You now know everything, ENJOY !
