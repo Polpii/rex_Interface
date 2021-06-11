@@ -2,8 +2,8 @@
   <div id="app">
     <div id="video">
       <img id="logo_Devo" alt="DEVO logo" src="./assets/Devo_4.png">
-      <!-- <img id="stream" :src=url> -->
-      <div ref="stream"></div>
+      <img id="stream" v-show="!mapbuilder" :src=url>
+      <div ref="stream" v-show="mapbuilder"></div>
     </div>
     <div id="sidebar">
       <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
