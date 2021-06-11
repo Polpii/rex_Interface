@@ -57,7 +57,7 @@ chmod +x launch_server.sh
 ./launch_server.sh
 ```
 
-![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png.png?raw=true)
+![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_map_builder.png?raw=true)
 
