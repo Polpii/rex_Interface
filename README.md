@@ -19,7 +19,7 @@ This **interface** allows you to control **REX**, the following robot of the DVI
 
 This is what the interface looks like :
 
-![image](https://github.com/Polpii/rex_Interface/blob/main/pics/interface.png?raw=true)
+![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_no_map.png?raw=true)
 
 You can use the interface to interact with REX with the different buttons:
 * **FOLLOW ME**
@@ -56,6 +56,11 @@ cd ..
 chmod +x launch_server.sh
 ./launch_server.sh
 ```
+
+![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png.png?raw=true)
+
+![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_map_builder.png?raw=true)
+
 
 This will launch this three servers:
 * SERVER/server.py
