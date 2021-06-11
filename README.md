@@ -36,8 +36,8 @@ There is four main modes.
 * If you want REX to follow you, you'll have to write the id of the person you want to follow next to **FIX ON** and then click on **FOLLOW ME**. If you want to follow another person, simply **UNFIX** and **FIX ON** someone else.
 * After following someone, REX can return home autonomously by clicking on the **GO HOME** button
 * If you want to control manually the robot you have to select **MANUAL MODE** and then arrows will appear to control REX
-* IF you want REX to build a map in real time click on **MAP BUILDER** then click on the sh file on the desktop and you'll see a 3D map creation. While creating it, you can control him with the arrows of the **MANUAL MODE**
-
+* If you want REX to build a map in real time click on **MAP BUILDER** then click on the sh file on the desktop and you'll see a 3D map creation. While creating it, you can control him with the arrows of the **MANUAL MODE**
+* 
 ### HOW TO LAUNCH THE DEMO
 
 You'll have to run four different codes in four bash:
@@ -57,9 +57,14 @@ chmod +x launch_server.sh
 ./launch_server.sh
 ```
 
-![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
+Once youre on th interface you can connect yourself to the Jetson Nano by clicking on the **Map Builder**. You'll see this page: 
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_map_builder.png?raw=true)
+
+On the right of the screen there is two application that will run two different scripts. The arrow one will launch the **following** mode. You'll have to enter the password and hit Enter. Then click on **DISCONNECT** and reload your page. You'll see this:   
+
+![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
+
 
 
 This will launch this three servers:
