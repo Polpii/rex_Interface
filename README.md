@@ -61,7 +61,7 @@ Once youre on th interface you can connect yourself to the Jetson Nano by clicki
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/screen_map_builder.png?raw=true)
 
-On the right of the screen there is two application that will run two different scripts. The arrow one will launch the **following** mode. You'll have to enter the password and hit Enter. Then click on **DISCONNECT** and reload your page. You'll see this:   
+On the right of the screen there is two application that will run two different scripts. The arrow one will launch the **following** mode. You'll have to enter the password and hit Enter. Then click on **DISCONNECT**, reload your page and tadaa:   
 
 ![image](https://github.com/Polpii/rex_Interface/blob/main/pics/stream_follow.png?raw=true)
 
