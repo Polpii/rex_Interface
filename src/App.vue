@@ -7,6 +7,8 @@
         :class="{ stream: !this.$store.state.slam, littleStream: this.$store.state.slam}"
         :url=url
       />
+      <img id="stream" v-show="!mapbuilder" :src=url>
+      <div ref="stream" v-show="mapbuilder" class="iframe"></div>
     </div>
     <div id="sidebar">
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
