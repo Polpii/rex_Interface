@@ -21,16 +21,22 @@
     "sass-loader": "10",
     "scss": "^0.2.4",
     "sdp-translator": "^0.1.24",
+    "three": "^0.129.0",
+    "three-full": "^28.0.2",
+    "three-orbit-controls": "^82.1.0",
+    "three-orbitcontrols": "^2.110.3",
     "v-aspect-ratio": "^2.0.1",
     "videojs-flash": "^2.2.1",
     "vue": "^2.6.11",
     "vue-video-player": "^5.0.2",
     "vue-web-cam": "^1.9.0",
-    "vue-webrtc": "^2.0.0"
+    "vue-webrtc": "^2.0.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

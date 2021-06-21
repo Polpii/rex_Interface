@@ -2,22 +2,16 @@
   <div id="app">
     <div id="video">
       <img id="logo_Devo" alt="DEVO logo" src="./assets/Devo_4.png">
-      <img id="stream" v-show="!mapbuilder" :src=url>
-      <div ref="stream" v-show="mapbuilder"></div>
+      <Slam :class="{ slam: this.$store.state.slam, littleSlam: !this.$store.state.slam}"/>
+      <Stream
+        :class="{ stream: !this.$store.state.slam, littleStream: this.$store.state.slam}"
+        :url=url
+      />
     </div>
     <div id="sidebar">
-      <button class="button" v-show="!manualMode" color="deeppink" v-on:click="navigation('follow')">FOLLOW ME</button>
-      <button class="button" v-show="!manualMode" v-on:click="navigation('waiting')">WAIT</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
-      <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL MODE</button>
+      <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('reset')">RESET</button>
-      <button class="send" v-show="!manualMode" v-on:click="navigation('1_' + id + '_')">FIX ON :</button>
-      <input class="input" v-show="!manualMode" v-model="id" placeholder="ENTER AN ID">
-      <button class="button" v-show="!manualMode" v-on:click="navigation('0_0_')">UNFIX</button>
-      <button class="button" v-show="!manualMode && !mapbuilder" v-on:click="connect()">MAP BUILDER</button>
-      <button class="button" v-show="!manualMode && mapbuilder" v-on:click="disconnect()">DISCONNECT</button>
-      <button class="button" v-show="!manualMode && mapbuilder && !running" v-on:click="swapRunning('run')">RUN</button>
-      <button class="button" v-show="!manualMode && mapbuilder && running" v-on:click="swapRunning('stop')">STOP</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">
         <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -34,31 +28,34 @@
           <circle cx="100" cy="100" r="80" fill="orange"/>
         </svg>
       </div>
-      <button class="button" v-show="manualMode" v-on:click="changeMode">BACK</button>
-      <img v-show="manualMode" id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
+      <button id="back" class="button" v-show="manualMode" v-on:click="changeMode">BACK</button>
+      <img id="logo_D" alt="DEVO logo" src="./assets/Devo.png">
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Slam from './components/Slam.vue'
+import Stream from './components/Streamm.vue'
 import Vue from 'vue'
-import RFB from '@novnc/novnc/core/rfb';
-import {WebRTC} from 'vue-webrtc'
-Vue.component(WebRTC.name, WebRTC)
 
 Vue.prototype.$http = axios
 
 export default {
   name: 'App',
   components: {
+    Stream,
+    Slam,
   },
   data () {
     return {
       manualMode: false,
       mapbuilder: false,
       running: false,
-      url: 'http://172.21.72.133:4444/video_feed',
+      idFixed: false,
+      url: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      // url: 'http://172.21.72.133:4444/video_feed',
       id: '',
       ws: 'ws://localhost:8081/',
       passwd: 'Rane2019',
@@ -67,18 +64,6 @@ export default {
   methods: {
     changeMode: function () {
       this.manualMode = false;
-    },
-    swapRunning(msg) {
-      this.running = !this.running;
-      this.navigation(msg);
-    },
-    connect() {
-      this.rfb.sendCredentials({ password: this.passwd });
-      this.mapbuilder = true;
-    },
-    disconnect() {
-      this.rfb.disconnect();
-      this.mapbuilder = false;
     },
     navigation: function (coordinates) {
       if (coordinates == 'manual') {
@@ -92,11 +77,6 @@ export default {
       })
       this.show = false
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.rfb = new RFB(this.$refs.stream, this.ws);
-    });
   }
 }
 </script>

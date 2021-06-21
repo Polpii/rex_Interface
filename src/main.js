@@ -1,12 +1,17 @@
 import App from './App.vue'
 import AspectRatio from "v-aspect-ratio";
-import Axios from 'axios'
+import axios from 'axios'
 import Vue from 'vue'
+import store from './store'
+
+
+Vue.prototype.$http = axios
 
 Vue.use(AspectRatio);
 Vue.config.productionTip = false
-Vue.prototype.$axios = Axios
+Vue.prototype.$axios = axios
 
 new Vue({
-  render: h => h(App),
+  store,
+  render: h => h(App)
 }).$mount('#app')
