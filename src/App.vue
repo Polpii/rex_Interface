@@ -7,6 +7,7 @@
         :class="{ stream: !this.$store.state.slam, littleStream: this.$store.state.slam}"
         :url=url
       />
+      <Test/>
       <img id="stream" v-show="!mapbuilder" :src=url>
       <div ref="stream" v-show="mapbuilder" class="iframe"></div>
     </div>
@@ -14,6 +15,7 @@
       <button class="button" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL</button>
       <button class="button" v-show="!manualMode" v-on:click="navigation('reset')">RESET</button>
+      <button class="button" v-show="!manualMode" v-on:click="test()">TEST</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">
         <div id="Forward" v-on:click="navigation('1')" class="control"></div>
@@ -38,8 +40,10 @@
 
 <script>
 import axios from 'axios'
+import firebase from 'firebase'
 import Slam from './components/Slam.vue'
 import Stream from './components/Streamm.vue'
+import Test from './components/test.vue'
 import Vue from 'vue'
 
 Vue.prototype.$http = axios
@@ -49,6 +53,7 @@ export default {
   components: {
     Stream,
     Slam,
+    Test,
   },
   data () {
     return {
@@ -78,6 +83,42 @@ export default {
         console.log(error)
       })
       this.show = false
+    },
+    async getData () {
+      const messageRef = firebase.database().ref('Human_pose')
+      return await axios.get(messageRef.toString() + '.json').then((response) => {
+        const result = 'ID : ' + ' ' + response.data.length
+        console.log(result)
+        return result
+      })      
+    },
+    async test2 () {
+      const express = require('express');
+      const app = express();
+      console.log('ok')
+      const server = require('http').createServer(app);
+      const io = require('socket.io')(server);
+      const port = process.env.PORT || 5000;
+
+      // app.use(express.static(__dirname + '/latency_public'));
+
+      io.on('connection', socket => {
+        console.log(`connect ${socket.id}`);
+
+        socket.on('data', function(msg) {
+          // socket.emit('pong_from_server');
+          console.log(msg);
+        });
+
+        socket.on('disconnect', () => {
+          console.log(`disconnect ${socket.id}`);
+        });
+      });
+
+      server.listen(port, () => console.log(`server listening on port ${port}`)); 
+    },
+    async test() {
+      await this.$store.dispatch('CHANGE_SCENE')
     }
   }
 }

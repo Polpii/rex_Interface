@@ -1,3 +1,5 @@
+import axios from 'axios'
+import firebase from 'firebase'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {
@@ -7,9 +9,13 @@ import {
   WebGLRenderer,
   Color,
   FogExp2,
-  CylinderBufferGeometry,
+  BoxGeometry,
   MeshPhongMaterial,
   Mesh,
+  Points,
+  PointsMaterial,
+  Float32BufferAttribute,
+  BufferGeometry,
   DirectionalLight,
   AmbientLight,
   LineBasicMaterial,
@@ -31,7 +37,8 @@ export default new Vuex.Store({
     scene: null,
     renderer: null,
     axisLines: [],
-    pyramids: []
+    pyramids: [],
+    points: null
   },
   mutations: {
     changeId(state, newId) {
@@ -42,6 +49,12 @@ export default new Vuex.Store({
     },
     putSlam(state) {
       state.slam = true
+    },
+    async GET_DATA (state) {
+      const messageRef = firebase.database().ref('3D_points')
+      return await axios.get(messageRef.toString() + '.json').then((response) => {
+        state.points = response.data       
+      })   
     },
     SET_VIEWPORT_SIZE (state, { width, height }) {
       state.width = width
@@ -82,13 +95,13 @@ export default new Vuex.Store({
     INITIALIZE_SCENE (state) {
       state.scene = new Scene()
       state.scene.background = new Color(0xcccccc)
-      state.scene.fog = new FogExp2(0xcccccc, 0.002)
-      var geometry = new CylinderBufferGeometry(0, 10, 30, 4, 1)
+      state.scene.fog = new FogExp2(0xcccccc, 0.00)
+      var geometry = new BoxGeometry(10, 10, 10)
       var material = new MeshPhongMaterial({
         color: 0xffffff,
         flatShading: true
       })
-      for (var i = 0; i < 500; i++) {
+      for (var i = 0; i < 1; i++) {
         var mesh = new Mesh(geometry, material)
         mesh.position.x = (Math.random() - 0.5) * 1000
         mesh.position.y = (Math.random() - 0.5) * 1000
@@ -163,7 +176,32 @@ export default new Vuex.Store({
         dispatch('ANIMATE')
         state.controls.update()
       })
-    }
+    },
+    CHANGE_SCENE (context) {
+      var geometry = new BufferGeometry()
+      var material = new PointsMaterial( { size: 5, sizeAttenuation: true, color: 'red', alphaTest: 0.5, transparent: true } );
+      var vertices = new Float32Array(context.state.points.length * 3)
+      // console.log(`je : ${context.state.points}`)
+      // context.commit('getData')
+      
+      for (var i = 0; i < context.state.points.length; i++) {
+        vertices[i * 3 + 0] = context.state.points[i][0] * 100
+        vertices[i * 3 + 1] = context.state.points[i][1] * 100
+        vertices[i * 3 + 2] = context.state.points[i][2] * 100
+      }
+      geometry.setAttribute( 'position', new Float32BufferAttribute(vertices, 3));
+      var point = new Points(geometry, material)
+      context.state.pyramids.push(point)
+
+      context.state.scene.add(...context.state.pyramids)
+      // Initial scene rendering
+      context.state.renderer.render(context.state.scene, context.state.camera)
+      // Add an event listener that will re-render
+      // the scene when the controls are changed
+      context.state.controls.addEventListener('change', () => {
+        context.state.renderer.render(context.state.scene, context.state.camera)
+      })
+    },
   },
   modules: {
   }

@@ -18,8 +18,8 @@ export default {
       this.slam = true;
       this.$store.commit('putSlam');
     },
-    ...mapMutations(['RESIZE']),
-    ...mapActions(['INIT', 'ANIMATE'])
+    ...mapMutations(['RESIZE', 'GET_DATA', 'CHANGE_SCENE']),
+    ...mapActions(['INIT', 'ANIMATE', 'CHANGE_SCENE'])
   },
   mounted () {
     this.INIT({
@@ -27,6 +27,7 @@ export default {
       height: this.$el.offsetHeight,
       el: this.$el
     }).then(() => {
+      this.GET_DATA()
       this.ANIMATE()
       window.addEventListener('resize', () => {
         this.RESIZE({
