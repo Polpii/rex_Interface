@@ -1,12 +1,12 @@
 <template>
   <div>
   <img id="img" :src=url v-on:click="unSelect(), unSlam()">
-  <!-- <Square ID="1" :xa="10" :ya="10" :xc="35" :yc="77"/>
-  <Square ID="2" :xa="40" :ya="27" :xc="60" :yc="67"/>
-  <Square ID="3" :xa="65" :ya="47" :xc="70" :yc="57"/> -->
+  <!-- <Square :ID='1' :xa="10" :ya="15" :xc="70" :yc="80"/>
+  <Square :ID='2' :xa="40" :ya="27" :xc="60" :yc="67"/>
+  <Square :ID='3' :xa="65" :ya="47" :xc="70" :yc="57"/> -->
   <Square
-    v-for='(human, index) in humans' :key="index"
-    :ID=index
+    v-for='(human, index) in JSON.parse(humans)["Human"]' :key="index"
+    :ID='0'
     :xa=parseInt(human[0])
     :ya=parseInt(human[1])
     :xc=parseInt(human[2])
@@ -19,6 +19,7 @@
 // import axios from 'axios'
 // import firebase from 'firebase'
 import Square from './Square.vue'
+// import Express from 'express'
 // import { Server } from 'socket.io'
 
 export default {
@@ -28,14 +29,17 @@ export default {
   },
   data() {
     return {
-        humans: [],
-        io: undefined,
+        humans: null,
     };
   },
   props: {
     url: String,
   },
   methods: {
+    test() {
+      // console.log(this.humans)
+      console.log(JSON.parse(this.humans)["Human"][0])
+    },
     unSlam() {
       this.$store.commit('unSlam');
     },
@@ -52,62 +56,35 @@ export default {
         .then(resp => console.log(resp.data)).catch(error => console.log(error))
       this.show = false
     },
-    getHuman () {
-      const express = require('express');
-      const app = express();
-      const server = require('http').createServer(app);
-      const io = require('socket.io')(server);
-      const port = process.env.PORT || 5000;
-
-      // app.use(express.static(__dirname + '/latency_public'));
-
-      io.on('connection', socket => {
-        console.log(`connect ${socket.id}`);
-
-        socket.on('data', function(msg) {
-          // socket.emit('pong_from_server');
-          console.log(msg);
-        });
-
-        socket.on('disconnect', () => {
-          console.log(`disconnect ${socket.id}`);
-        });
-      });
-
-      server.listen(port, () => console.log(`server listening on port ${port}`));
-    }
-    // getData () {
-    //   const messageRef = firebase.database().ref('Human_pose')
-    //   fetch(messageRef.toString() + '.json')
-    //     .then(res => res.json())
-    //     .then(res => this.humans = res.data)
-    // }
   },
-  // created: function() {
-  //   const express = require('express');
-  //   const app = express();
-  //   console.log('ok')
-  //   const server = require('http').createServer(app);
-  //   const io = require('socket.io')(server);
-  //   const port = process.env.PORT || 5000;
+  created: function() {
+    var self = this;
+    const io = require('socket.io-client')
+    const port = process.env.PORT || 5000;
 
-  //   // app.use(express.static(__dirname + '/latency_public'));
+    const socket = io('http://172.21.72.151:' + port);
 
-  //   io.on('connection', socket => {
-  //     console.log(`connect ${socket.id}`);
+    function send () {
+      socket.emit('ping_from_client');
+    }
 
-  //     socket.on('data', function(msg) {
-  //       // socket.emit('pong_from_server');
-  //       console.log(msg);
-  //     });
+    socket.on('connect', () => {
+      console.log(`connect ${socket.id}`);
+      send();
+    });
 
-  //     socket.on('disconnect', () => {
-  //       console.log(`disconnect ${socket.id}`);
-  //     });
-  //   });
+    socket.on('disconnect', () => {
+      console.log(`disconnect ${socket.id}`);
+    });
 
-  //   server.listen(port, () => console.log(`server listening on port ${port}`)); 
-  // },
+    socket.on('pong_from_server', function(msg) {
+      // const latency = new Date() - last;
+      // console.log('latency is ' + latency + ' ms');
+      self.humans = JSON.parse(JSON.stringify(msg));
+      console.log(self.humans)
+      setTimeout(send, 10000);
+    });
+  },
 };
 </script>
 

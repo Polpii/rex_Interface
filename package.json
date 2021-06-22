@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "scss": "^0.2.4",
     "sdp-translator": "^0.1.24",
     "socket.io": "^4.1.2",
+    "socket.io-client": "^4.1.2",
     "three": "^0.129.0",
     "three-full": "^28.0.2",
     "three-orbit-controls": "^82.1.0",
