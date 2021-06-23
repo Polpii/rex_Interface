@@ -69,8 +69,8 @@ export default {
       running: false,
       idFixed: false,
       // url: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      // url: 'http://172.21.72.133:4444/video_feed',
-      url: 'http://192.168.255.107:4444/video_feed',
+      url: 'http://172.21.72.133:4444/video_feed',
+      // url: 'http://192.168.255.107:4444/video_feed',
       id: '',
     };
   },

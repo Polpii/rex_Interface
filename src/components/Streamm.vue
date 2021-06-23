@@ -60,10 +60,10 @@ export default {
   created: function() {
     var self = this;
     const io = require('socket.io-client')
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 5001;
 
-    const socket = io('http://192.168.255.112:' + port);
-    // const socket = io('http://172.21.72.126:' + port);
+    // const socket = io('http://192.168.255.112:' + port);
+    const socket = io('http://172.21.72.126:' + port);
 
     function send () {
       socket.emit('ping_from_client');
