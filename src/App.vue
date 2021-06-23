@@ -7,8 +7,6 @@
         :class="{ stream: !this.$store.state.slam, littleStream: this.$store.state.slam}"
         :url=url
       />
-      <img id="stream" v-show="!mapbuilder" :src=url>
-      <div ref="stream" v-show="mapbuilder" class="iframe"></div>
     </div>
     <div id="sidebar">
       <div class="home">
@@ -18,12 +16,8 @@
         </div>
         <button class="goHomeButton" v-show="!manualMode" v-on:click="navigation('home')">GO HOME</button>
       </div>
-      <!-- <div class="button">
-          <span class="text">MANUAL</span>
-          <div class="hover"></div>
-      </div> -->
+
       <button class="button" v-show="!manualMode" v-on:click="navigation('manual')">MANUAL</button>
-      <!-- <button class="button" v-show="!manualMode" v-on:click="navigation('reset')">RESET</button> -->
       <button class="button" v-show="!manualMode" v-on:click="test()">TEST</button>
 
       <div v-show="manualMode" class="controls" v-aspect-ratio="'1:1'">

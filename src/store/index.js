@@ -94,7 +94,7 @@ export default new Vuex.Store({
     },
     INITIALIZE_SCENE (state) {
       state.scene = new Scene()
-      state.scene.background = new Color(0xcccccc)
+      state.scene.background = new Color(0x000000)
       state.scene.fog = new FogExp2(0xcccccc, 0.00)
       var geometry = new BoxGeometry(10, 10, 10)
       var material = new MeshPhongMaterial({
@@ -183,7 +183,7 @@ export default new Vuex.Store({
       var vertices = new Float32Array(context.state.points.length * 3)
       // console.log(`je : ${context.state.points}`)
       // context.commit('getData')
-      
+      context.state.pyramids = []
       for (var i = 0; i < context.state.points.length; i++) {
         vertices[i * 3 + 0] = context.state.points[i][0] * 100
         vertices[i * 3 + 1] = context.state.points[i][1] * 100
