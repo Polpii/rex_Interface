@@ -24,7 +24,7 @@ export default {
     };
   },
   props: {
-    ID: Number,
+    ID: String,
     xa: Number,
     ya: Number,
     xc: Number,
