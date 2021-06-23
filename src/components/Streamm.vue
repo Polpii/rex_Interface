@@ -1,17 +1,17 @@
 <template>
   <div>
   <img id="img" :src=url v-on:click="unSelect(), unSlam()">
-  <!-- <Square :ID='1' :xa="10" :ya="15" :xc="70" :yc="80"/>
+  <Square :ID='1' :xa="10" :ya="15" :xc="70" :yc="80"/>
   <Square :ID='2' :xa="40" :ya="27" :xc="60" :yc="67"/>
-  <Square :ID='3' :xa="65" :ya="47" :xc="70" :yc="57"/> -->
-  <Square
+  <Square :ID='3' :xa="65" :ya="47" :xc="70" :yc="57"/>
+  <!-- <Square
     v-for='(human, index) in JSON.parse(humans)["Human_pose"]' :key="index"
     :ID= index
     :xa=(parseInt(human[0])/1280)*100
     :ya=(parseInt(human[1])/720)*100
     :xc=(parseInt(human[2])/1280)*100
     :yc=(parseInt(human[3])/720)*100
-  />
+  /> -->
   </div>
 </template>
 
@@ -62,7 +62,7 @@ export default {
     const io = require('socket.io-client')
     const port = process.env.PORT || 5000;
 
-    const socket = io('http://192.168.255.107:' + port);
+    const socket = io('http://192.168.255.112:' + port);
     // const socket = io('http://172.21.72.126:' + port);
 
     function send () {
