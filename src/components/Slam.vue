@@ -37,11 +37,10 @@ export default {
       })
     })
     // update the time every second
-    this.interval = setInterval(() => {
-      console.log('polpi')
-      this.GET_DATA()
-      this.CHANGE_SCENE()
-    }, 1000);
+    // this.interval = setInterval(() => {
+    //   this.GET_DATA()
+    //   this.CHANGE_SCENE()
+    // }, 1000);
   }
 };
 

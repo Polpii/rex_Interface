@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-        humans: {"Human_pose": {"0": ["10", "15", "70", "80"]}},
+        humans: '{"Human_pose": {"0": ["10", "15", "70", "80"]}}',
     };
   },
   props: {

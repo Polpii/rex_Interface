@@ -9,9 +9,9 @@ import {
   WebGLRenderer,
   Color,
   FogExp2,
-  BoxGeometry,
-  MeshPhongMaterial,
-  Mesh,
+  // BoxGeometry,
+  // MeshPhongMaterial,
+  // Mesh,
   Points,
   PointsMaterial,
   Float32BufferAttribute,
@@ -38,7 +38,9 @@ export default new Vuex.Store({
     renderer: null,
     axisLines: [],
     pyramids: [],
-    points: null
+    points: null,
+    geometry: new BufferGeometry()
+
   },
   mutations: {
     changeId(state, newId) {
@@ -53,7 +55,7 @@ export default new Vuex.Store({
     async GET_DATA (state) {
       const messageRef = firebase.database().ref('3D_points')
       return await axios.get(messageRef.toString() + '.json').then((response) => {
-        state.points = response.data       
+        state.points = response.data   
       })   
     },
     SET_VIEWPORT_SIZE (state, { width, height }) {
@@ -94,23 +96,23 @@ export default new Vuex.Store({
     },
     INITIALIZE_SCENE (state) {
       state.scene = new Scene()
-      state.scene.background = new Color(0x000000)
+      state.scene.background = new Color(0xcccccc)
       state.scene.fog = new FogExp2(0xcccccc, 0.00)
-      var geometry = new BoxGeometry(10, 10, 10)
-      var material = new MeshPhongMaterial({
-        color: 0xffffff,
-        flatShading: true
-      })
-      for (var i = 0; i < 1; i++) {
-        var mesh = new Mesh(geometry, material)
-        mesh.position.x = (Math.random() - 0.5) * 1000
-        mesh.position.y = (Math.random() - 0.5) * 1000
-        mesh.position.z = (Math.random() - 0.5) * 1000
-        mesh.updateMatrix()
-        mesh.matrixAutoUpdate = false
-        state.pyramids.push(mesh)
-      }
-      state.scene.add(...state.pyramids)
+      // var geometry = new BoxGeometry(10, 10, 10)
+      // var material = new MeshPhongMaterial({
+      //   color: 0xffffff,
+      //   flatShading: true
+      // })
+      // for (var i = 0; i < 1; i++) {
+      //   var mesh = new Mesh(geometry, material)
+      //   mesh.position.x = (Math.random() - 0.5) * 1000
+      //   mesh.position.y = (Math.random() - 0.5) * 1000
+      //   mesh.position.z = (Math.random() - 0.5) * 1000
+      //   mesh.updateMatrix()
+      //   mesh.matrixAutoUpdate = false
+      //   state.pyramids.push(mesh)
+      // }
+      // state.scene.add(...state.pyramids)
       // lights
       var lightA = new DirectionalLight(0xffffff)
       lightA.position.set(1, 1, 1)
@@ -178,7 +180,6 @@ export default new Vuex.Store({
       })
     },
     CHANGE_SCENE (context) {
-      var geometry = new BufferGeometry()
       var material = new PointsMaterial( { size: 5, sizeAttenuation: true, color: 'red', alphaTest: 0.5, transparent: true } );
       var vertices = new Float32Array(context.state.points.length * 3)
       // console.log(`je : ${context.state.points}`)
@@ -189,8 +190,9 @@ export default new Vuex.Store({
         vertices[i * 3 + 1] = context.state.points[i][1] * 100
         vertices[i * 3 + 2] = context.state.points[i][2] * 100
       }
-      geometry.setAttribute( 'position', new Float32BufferAttribute(vertices, 3));
-      var point = new Points(geometry, material)
+      // context.state.geometry = [...new Set(context.state.geometry)]
+      context.state.geometry.setAttribute( 'position', new Float32BufferAttribute(vertices, 3));
+      var point = new Points(context.state.geometry, material)
       context.state.pyramids.push(point)
 
       context.state.scene.add(...context.state.pyramids)
